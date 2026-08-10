@@ -37,7 +37,7 @@ const formatDate = (date: Date) =>
             <span>{project.data.status}</span>
           </div>
 
-          <h2>{project.data.title}</h2>
+          <h2><a href={`/projects/${project.id}`}>{project.data.title}</a></h2>
 
           <p>{project.data.description}</p>
         </article>
