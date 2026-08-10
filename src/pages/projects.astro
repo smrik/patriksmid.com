@@ -1,0 +1,91 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-GB', {
+    month: 'short',
+    year: 'numeric',
+  });
+---
+
+<BaseLayout
+  title="Projects — Patrik Šmid"
+  description="Projects and experiments by Patrik Šmid across finance, AI, data, and systems."
+>
+  <section class="page-intro">
+    <p class="eyebrow">Projects</p>
+
+    <h1>Work & experiments</h1>
+
+    <p class="intro">
+      Things I build and explore around finance, investing, artificial intelligence,
+      data, and systems.
+    </p>
+  </section>
+
+  <section class="project-list">
+    {
+      projects.map((project) => (
+        <article class="project">
+          <div class="project-meta">
+            <span>{formatDate(project.data.date)}</span>
+            <span>{project.data.status}</span>
+          </div>
+
+          <h2>{project.data.title}</h2>
+
+          <p>{project.data.description}</p>
+        </article>
+      ))
+    }
+  </section>
+</BaseLayout>
+
+<style>
+  .page-intro {
+    padding: clamp(5rem, 10vw, 8rem) 0;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .page-intro h1 {
+    max-width: 900px;
+    margin-bottom: 2rem;
+  }
+
+  .intro {
+    max-width: 700px;
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    line-height: 1.5;
+  }
+
+  .project {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .project h2 {
+    max-width: 800px;
+    margin-bottom: 1rem;
+  }
+
+  .project p {
+    max-width: 700px;
+    color: var(--muted);
+  }
+
+  .project-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+</style>
