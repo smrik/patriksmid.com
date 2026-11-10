@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About — Patrik Šmid"
+  description="About Patrik Šmid and his interests across finance, AI, investing, technology, and systems."
+>
+  <section class="page-intro">
+    <p class="eyebrow">About</p>
+
+    <h1>Finance, technology & curiosity.</h1>
+  </section>
+
+  <section class="about">
+    <div class="about-label">
+      <p class="eyebrow">Background</p>
+    </div>
+
+    <div class="about-copy">
+      <p>
+        I work in finance and spend a lot of my time exploring the intersection of
+        investing, artificial intelligence, data, and software.
+      </p>
+
+      <p>
+        I am particularly interested in using technology to make analytical work more
+        useful, repeatable, and understandable — without replacing the judgement that
+        actually matters.
+      </p>
+
+      <p>
+        This site is where I keep projects, experiments, notes, and things I find worth
+        thinking about.
+      </p>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="about-label">
+      <p class="eyebrow">Elsewhere</p>
+    </div>
+
+    <div class="about-copy links">
+      <a href="https://github.com/smrik">GitHub →</a>
+      <a href="https://www.linkedin.com/">LinkedIn →</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-intro {
+    padding: clamp(5rem, 10vw, 8rem) 0;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .page-intro h1 {
+    max-width: 950px;
+  }
+
+  .about {
+    display: grid;
+    grid-template-columns: minmax(140px, 1fr) minmax(0, 3fr);
+    gap: 3rem;
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .about-copy {
+    max-width: 720px;
+  }
+
+  .about-copy p {
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    line-height: 1.6;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 700px) {
+    .about {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>

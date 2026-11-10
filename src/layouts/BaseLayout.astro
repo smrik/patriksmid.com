@@ -1,0 +1,54 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Patrik Šmid — finance, AI, systems, and writing.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a class="site-name" href="/">Patrik Šmid</a>
+
+      <nav aria-label="Primary navigation">
+        <a href="/projects">Projects</a>
+        <a href="/writing">Writing</a>
+        <a href="/flatbot">Flatbot</a>
+        <a href="/about">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <span>Patrik Šmid</span>
+
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/" rel="me">LinkedIn</a>
+        <a href="https://github.com/smrik" rel="me">GitHub</a>
+      </div>
+    </footer>
+  </body>
+</html>

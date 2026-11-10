@@ -1,0 +1,77 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+---
+
+<BaseLayout
+  title={`${project.data.title} — Patrik Šmid`}
+  description={project.data.description}
+>
+  <article class="detail">
+    <header>
+      <p class="eyebrow">
+        {formatDate(project.data.date)} · {project.data.status}
+      </p>
+
+      <h1>{project.data.title}</h1>
+
+      <p class="description">{project.data.description}</p>
+    </header>
+
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .detail {
+    max-width: 850px;
+    padding: clamp(5rem, 10vw, 8rem) 0;
+  }
+
+  header {
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .description {
+    max-width: 700px;
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .content {
+    max-width: 720px;
+    padding-top: 3rem;
+  }
+
+  .content :global(p) {
+    font-size: 1.1rem;
+    line-height: 1.75;
+  }
+
+  .content :global(h2) {
+    margin-top: 3rem;
+  }
+</style>
