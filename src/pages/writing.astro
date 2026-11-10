@@ -1,0 +1,94 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const writing = (await getCollection("writing"))
+	.filter((entry) => !entry.data.draft)
+	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const formatDate = (date: Date) =>
+	date.toLocaleDateString("en-GB", {
+		day: "numeric",
+		month: "short",
+		year: "numeric",
+	});
+---
+
+<BaseLayout
+	title="Writing — Patrik Šmid"
+	description="Notes and writing by Patrik Šmid on finance, AI, investing, technology, and systems."
+>
+	<section class="page-intro">
+		<p class="eyebrow">Writing</p>
+
+		<h1>Notes & ideas</h1>
+
+		<p class="intro">
+			Occasional notes on things I am learning, building, researching, or
+			thinking about.
+		</p>
+	</section>
+
+	<section class="writing-list">
+		{
+			writing.map((entry) => (
+				<article class="writing-entry">
+					<div class="entry-meta">
+						<span>{formatDate(entry.data.date)}</span>
+						<span>{entry.data.category}</span>
+					</div>
+
+					<h2>
+						<a href={`/writing/${entry.id}`}>{entry.data.title}</a>
+					</h2>
+
+					<p>{entry.data.description}</p>
+				</article>
+			))
+		}
+	</section>
+</BaseLayout>
+
+<style>
+	.page-intro {
+		padding: clamp(5rem, 10vw, 8rem) 0;
+		border-bottom: 1px solid var(--ink);
+	}
+
+	.page-intro h1 {
+		max-width: 900px;
+		margin-bottom: 2rem;
+	}
+
+	.intro {
+		max-width: 700px;
+		font-size: clamp(1.2rem, 2vw, 1.6rem);
+		line-height: 1.5;
+	}
+
+	.writing-entry {
+		padding: 3rem 0;
+		border-bottom: 1px solid var(--rule);
+	}
+
+	.writing-entry h2 {
+		max-width: 800px;
+		margin-bottom: 1rem;
+	}
+
+	.writing-entry p {
+		max-width: 700px;
+		color: var(--muted);
+	}
+
+	.entry-meta {
+		display: flex;
+		gap: 1rem;
+		margin-bottom: 1.25rem;
+		font-family: "Courier New", monospace;
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--muted);
+	}
+</style>

@@ -1,0 +1,77 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const writing = await getCollection('writing', ({ data }) => !data.draft);
+
+  return writing.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+---
+
+<BaseLayout
+  title={`${entry.data.title} — Patrik Šmid`}
+  description={entry.data.description}
+>
+  <article class="detail">
+    <header>
+      <p class="eyebrow">
+        {formatDate(entry.data.date)} · {entry.data.category}
+      </p>
+
+      <h1>{entry.data.title}</h1>
+
+      <p class="description">{entry.data.description}</p>
+    </header>
+
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .detail {
+    max-width: 850px;
+    padding: clamp(5rem, 10vw, 8rem) 0;
+  }
+
+  header {
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .description {
+    max-width: 700px;
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .content {
+    max-width: 720px;
+    padding-top: 3rem;
+  }
+
+  .content :global(p) {
+    font-size: 1.1rem;
+    line-height: 1.75;
+  }
+
+  .content :global(h2) {
+    margin-top: 3rem;
+  }
+</style>
