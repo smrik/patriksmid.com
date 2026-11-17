@@ -37,7 +37,7 @@ and [Workers limits](https://developers.cloudflare.com/workers/platform/limits/)
 
 ## Local checks
 
-Use Node.js 24 and npm, as the GitHub workflow does:
+Use Node.js 24 and npm, as the GitHub workflow does (`nvm use` reads `.nvmrc`):
 
 ```bash
 npm ci
@@ -68,6 +68,7 @@ the same checked commit.
 | `worker/index.js`, `wrangler.jsonc` | Cloud routing and assets |
 | `.github/workflows/publish.yml` | Checks and publishing |
 | `tests/` | Site, routing, and deployment checks |
+| `.github/dependabot.yml` | Weekly dependency and Actions update PRs |
 
 ## Project workflow
 
