@@ -1,0 +1,67 @@
+<section class="quartz-posts" aria-labelledby="quartz-posts-title">
+  <h2 id="quartz-posts-title">Latest from the blog</h2>
+  <p><a class="blog-link" href="https://smrik.github.io/">Explore the blog ↗</a></p>
+  <ul id="quartz-posts" hidden></ul>
+</section>
+
+<script>
+  const blog = 'https://smrik.github.io';
+  const list = document.getElementById('quartz-posts');
+
+  async function loadPosts() {
+    if (!list) return;
+    const response = await fetch(`${blog}/index.xml`, { credentials: 'omit', redirect: 'error' });
+    if (!response.ok) return;
+    const feed = new DOMParser().parseFromString(await response.text(), 'application/xml');
+    const links = new Set<string>();
+
+    for (const item of feed.querySelectorAll('rss > channel > item')) {
+      const title = item.querySelector('title')?.textContent?.trim();
+      const href = item.querySelector('link')?.textContent?.trim();
+      if (!title || !href || !URL.canParse(href)) continue;
+      const url = new URL(href);
+      if (url.origin !== blog || url.username || url.password || url.pathname === '/') continue;
+      if (/\/README(?:\.html)?\/?$/i.test(url.pathname) || links.has(url.href)) continue;
+
+      links.add(url.href);
+      const link = document.createElement('a');
+      link.href = url.href;
+      link.textContent = title;
+      const row = document.createElement('li');
+      row.append(link);
+      list.append(row);
+      if (links.size === 4) break;
+    }
+
+    list.hidden = links.size === 0;
+  }
+
+  // The ordinary blog link remains available when the feed cannot load.
+  loadPosts().catch(() => {});
+</script>
+
+<style>
+  .quartz-posts {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  #quartz-posts {
+    padding: 0;
+    margin-bottom: 0;
+    list-style: none;
+  }
+
+  #quartz-posts :global(li) {
+    padding: 0.875rem 0;
+    border-top: 1px solid var(--rule);
+    font-size: 1.2rem;
+  }
+
+  .blog-link,
+  #quartz-posts :global(a) {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+</style>
