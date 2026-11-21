@@ -27,6 +27,7 @@ const formatDate = (date: Date) =>
 			Occasional notes on things I am learning, building, researching, or
 			thinking about.
 		</p>
+		<p><a class="blog-link" href="https://smrik.github.io/">Explore the blog ↗</a></p>
 	</section>
 
 	<section class="writing-list">
@@ -64,6 +65,12 @@ const formatDate = (date: Date) =>
 		max-width: 700px;
 		font-size: clamp(1.2rem, 2vw, 1.6rem);
 		line-height: 1.5;
+	}
+
+	.blog-link {
+		color: var(--accent);
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
 	}
 
 	.writing-entry {

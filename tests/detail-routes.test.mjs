@@ -31,3 +31,21 @@ test('project and writing listings link to their detail pages', () => {
   assert.match(projects, /href="\/projects\/ai-fund"/);
   assert.match(writing, /href="\/writing\/first-note"/);
 });
+
+test('the homepage links to the public sites and the Quartz blog', () => {
+  const home = readFileSync('dist/index.html', 'utf8');
+  const writing = readFileSync('dist/writing/index.html', 'utf8');
+
+  assert.match(home, /href="\/#websites"/);
+  assert.match(home, /id="websites"/);
+  assert.match(home, /href="https:\/\/life\.patriksmid\.com\/"/);
+  assert.match(home, /href="https:\/\/cfa\.patriksmid\.com\/"/);
+  assert.match(home, /href="https:\/\/keydojo\.patriksmid\.com\/"/);
+  assert.match(home, /href="https:\/\/smrik-research-desk\.smrik\.chatgpt\.site\/"/);
+  assert.match(home, /href="https:\/\/patrik-code-lab\.smrik\.chatgpt\.site\/"/);
+  assert.match(home, /href="https:\/\/song-duel-patrik\.smrik\.chatgpt\.site\/"/);
+  assert.match(home, /href="https:\/\/slovenia-purchasing-power\.smrik\.chatgpt\.site\/"/);
+  assert.match(home, /href="https:\/\/vim-forge\.smrik\.chatgpt\.site\/"/);
+  assert.match(home, /href="https:\/\/smrik\.github\.io\/"/);
+  assert.match(writing, /href="https:\/\/smrik\.github\.io\/"[^>]*>Explore the blog/);
+});
