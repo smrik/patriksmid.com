@@ -15,6 +15,49 @@ const latestWriting = writing
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 
+const websites = [
+  {
+    title: 'Life in Rooms',
+    href: 'https://life.patriksmid.com/',
+    description: 'A browser game about the rooms and decisions that make up a life.',
+  },
+  {
+    title: 'CFA Visual Lab',
+    href: 'https://cfa.patriksmid.com/',
+    description: 'Explore CFA topics with interactive visual explanations.',
+  },
+  {
+    title: 'Keydojo',
+    href: 'https://keydojo.patriksmid.com/',
+    description: 'Practice keyboard skills in the browser.',
+  },
+  {
+    title: 'Smrik Research Desk',
+    href: 'https://smrik-research-desk.smrik.chatgpt.site/',
+    description: 'Explore research tools and workflows.',
+  },
+  {
+    title: 'Code Lab',
+    href: 'https://patrik-code-lab.smrik.chatgpt.site/',
+    description: 'Solve programming challenges in a browser-based Python workspace.',
+  },
+  {
+    title: 'Song Duel',
+    href: 'https://song-duel-patrik.smrik.chatgpt.site/',
+    description: 'Compare songs in head-to-head matchups.',
+  },
+  {
+    title: 'Slovenia Purchasing Power',
+    href: 'https://slovenia-purchasing-power.smrik.chatgpt.site/',
+    description: 'Explore purchasing power in Slovenia.',
+  },
+  {
+    title: 'Vim Forge',
+    href: 'https://vim-forge.smrik.chatgpt.site/',
+    description: 'Practice Vim in the browser.',
+  },
+];
+
 const formatDate = (date: Date) =>
   date.toLocaleDateString('en-GB', {
     month: 'short',
@@ -35,6 +78,20 @@ const formatDate = (date: Date) =>
       I work in finance and build things around investing, artificial intelligence,
       data, and the systems that connect them.
     </p>
+  </section>
+
+  <section class="section" id="websites" aria-labelledby="websites-title">
+    <h2 id="websites-title">Websites</h2>
+    <ul class="websites">
+      {websites.map(({ title, href, description }) => (
+        <li>
+          <a href={href}>
+            <h3>{title} <span aria-hidden="true">↗</span></h3>
+            <p>{description}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
   </section>
 
   <section class="section">
@@ -103,6 +160,39 @@ const formatDate = (date: Date) =>
   .section {
     padding: 3rem 0;
     border-bottom: 1px solid var(--rule);
+  }
+
+  .websites {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .websites a {
+    display: block;
+    height: 100%;
+    padding: 1.25rem;
+    border: 1px solid var(--rule);
+    border-radius: 0.25rem;
+    text-decoration: none;
+  }
+
+  .websites h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    color: var(--accent);
+  }
+
+  .websites a:hover h3 {
+    text-decoration: underline;
+  }
+
+  .websites p {
+    margin: 0;
+    color: var(--muted);
   }
 
   .section-heading {

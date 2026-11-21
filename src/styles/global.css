@@ -3,6 +3,7 @@
 	--ink: #171717;
 	--muted: #6f6b64;
 	--rule: #c9c2b7;
+	--accent: #315c4b;
 	--max-width: 1180px;
 
 	font-family: Georgia, 'Times New Roman', serif;
@@ -36,6 +37,11 @@ a:hover {
 	text-underline-offset: 0.2em;
 }
 
+a:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 4px;
+}
+
 .site-header,
 .site-footer,
 main {
@@ -60,6 +66,7 @@ main {
 
 .site-header nav {
 	display: flex;
+	flex-wrap: wrap;
 	gap: 1.5rem;
 	font-family: 'Courier New', monospace;
 	font-size: 0.8rem;
@@ -128,10 +135,6 @@ p {
 	.site-header {
 		align-items: flex-start;
 		flex-direction: column;
-	}
-
-	.site-header nav {
-		flex-wrap: wrap;
 	}
 
 	.site-footer {
