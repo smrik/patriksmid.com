@@ -4,6 +4,9 @@ export default {
     if (url.hostname === 'www.patriksmid.com') {
       return Response.redirect(`https://patriksmid.com${url.pathname}${url.search}`, 301);
     }
+    if (url.hostname === 'keydojo.patriksmid.com') {
+      return Response.redirect('https://vim.patriksmid.com/', 303);
+    }
     const path = url.pathname;
     if (
       path === '/flatbot' || path.startsWith('/flatbot/') ||

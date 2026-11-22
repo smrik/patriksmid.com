@@ -39,7 +39,7 @@ test('the homepage links to the public sites and the Quartz blog', () => {
   assert.match(home, /id="websites"/);
   assert.match(home, /href="https:\/\/life\.patriksmid\.com\/"/);
   assert.match(home, /href="https:\/\/cfa\.patriksmid\.com\/"/);
-  assert.match(home, /href="https:\/\/keydojo\.patriksmid\.com\/"/);
+  assert.doesNotMatch(home, /href="https:\/\/keydojo\.patriksmid\.com\/"/);
   assert.match(home, /href="https:\/\/code\.patriksmid\.com\/"/);
   assert.match(home, /ChatGPT sign-in required\./);
   assert.match(home, /href="https:\/\/songs\.patriksmid\.com\/"/);
