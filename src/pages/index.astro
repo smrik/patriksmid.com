@@ -14,32 +14,32 @@ const websites = [
   {
     title: 'Life in Rooms',
     href: 'https://life.patriksmid.com/',
-    description: 'A browser game about the rooms and decisions that make up a life.',
+    description: 'A browser game about daily routines.',
   },
   {
     title: 'CFA Visual Lab',
     href: 'https://cfa.patriksmid.com/',
-    description: 'Explore CFA topics with interactive visual explanations.',
+    description: 'Interactive CFA study modules.',
   },
   {
     title: 'Vim Forge',
     href: 'https://vim.patriksmid.com/',
-    description: 'Practice Vim in the browser.',
+    description: 'Keyboard drills for Vim.',
   },
   {
     title: 'Code Lab',
     href: 'https://code.patriksmid.com/',
-    description: 'Solve Python challenges in the browser. ChatGPT sign-in required.',
+    description: 'Python challenges. ChatGPT sign-in required.',
   },
   {
     title: 'Song Duel',
     href: 'https://songs.patriksmid.com/',
-    description: 'Compare songs in head-to-head matchups.',
+    description: 'Choose between two songs.',
   },
   {
     title: 'Macro Data',
     href: 'https://data.patriksmid.com/',
-    description: 'Explore Slovenia’s purchasing power and GDP.',
+    description: 'Slovenian purchasing power and GDP.',
   },
 ];
 
@@ -55,13 +55,9 @@ const formatDate = (date: Date) =>
   description="Websites, projects, and writing by Patrik Šmid."
   pageClass="home-page"
 >
-  <section class="hero">
-    <h1>Patrik Šmid</h1>
-  </section>
-
   <section class="section" id="websites" aria-labelledby="websites-title">
-    <h2 id="websites-title">Websites</h2>
-    <ul class="websites patrik-list patrik-grid">
+    <h1 id="websites-title">Websites</h1>
+    <ul class="websites patrik-list">
       {websites.map(({ title, href, description }) => (
         <li>
           <a href={href}>
@@ -72,6 +68,8 @@ const formatDate = (date: Date) =>
       ))}
     </ul>
   </section>
+
+  <QuartzPosts />
 
   <section class="section">
     <div class="section-heading">
@@ -96,67 +94,15 @@ const formatDate = (date: Date) =>
     </div>
   </section>
 
-  <QuartzPosts />
 </BaseLayout>
 
 <style>
-  .hero {
-    padding-block: clamp(2.5rem, 6vw, 5rem) 1.75rem;
-  }
-
-  .hero h1 {
-    margin: 0;
-  }
-
-  .section {
-    padding: 3rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  #websites {
-    padding-top: 0;
-  }
-
-  .websites a {
-    text-decoration: none;
-  }
-
-  .websites h3 {
-    margin-bottom: 0.2rem;
-    font-size: 1.15rem;
-    color: var(--accent);
-  }
-
-  .websites a:hover h3 {
-    text-decoration: underline;
-  }
-
-  .websites p {
-    margin: 0;
-    color: var(--muted);
-    font-size: 1rem;
-    line-height: 1.45;
-  }
-
-  @media (max-width: 42rem) {
-    .hero {
-      padding-block: 1.5rem 1.25rem;
-    }
-
-    #websites {
-      padding-bottom: 1.5rem;
-    }
-
-    #websites-title {
-      margin-bottom: 0.75rem;
-      font-size: 1.5rem;
-    }
-
-    .websites {
-      grid-template-columns: minmax(0, 1fr);
-    }
-  }
-
+  .section { padding-block: 1.5rem; }
+  #websites-title { margin: 0 0 .75rem; }
+  .websites a { text-decoration: none; padding-block: .65rem; }
+  .websites h3 { margin: 0; font-size: 1rem; font-weight: 600; }
+  .websites a:hover h3 { text-decoration: underline; }
+  .websites p { margin: .125rem 0 0; color: var(--muted); font: inherit; font-size: .9rem; }
   .section-heading {
     display: flex;
     justify-content: space-between;

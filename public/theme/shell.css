@@ -1,0 +1,64 @@
+/* Shared portfolio navigation. The source header remains the no-script fallback. */
+:root[data-patrik-navigation] {
+  --ps-width: 13.75rem;
+  --ps-paper: #f5f2ec;
+  --ps-pane: #eeeae3;
+  --ps-ink: #262522;
+  --ps-muted: #615e59;
+  --ps-line: #d5d0c8;
+  --ps-current: #554778;
+  --patrik-bg: var(--ps-paper);
+  --patrik-surface: #faf8f4;
+  --patrik-ink: var(--ps-ink);
+  --patrik-muted: var(--ps-muted);
+  --patrik-line: var(--ps-line);
+  --patrik-accent: var(--ps-current);
+  --patrik-heading: system-ui, sans-serif;
+}
+:root[data-patrik-navigation][data-theme=dark] {
+  --ps-paper: #202022;
+  --ps-pane: #262628;
+  --ps-ink: #f1efef;
+  --ps-muted: #b8b5ba;
+  --ps-line: #444346;
+  --ps-current: #cdbdf1;
+  --patrik-surface: #29292b;
+}
+html[data-patrik-navigation] [data-patrik-shell] { display:none !important; }
+html[data-patrik-navigation] body { margin-inline-start:var(--ps-width); }
+patrik-navigation { font:400 1rem/1.4 system-ui,sans-serif; color:var(--ps-ink); }
+patrik-navigation *, patrik-navigation *::before {box-sizing:border-box;}
+patrik-navigation .ps-rail, patrik-navigation .ps-bar, patrik-navigation .ps-drawer {
+  color:var(--ps-ink); background:var(--ps-pane); font:inherit; text-align:start;
+}
+patrik-navigation .ps-rail {
+  position:fixed; inset:0 auto 0 0; width:var(--ps-width); height:100dvh; margin:0;
+  padding:0; border:0; border-inline-end:1px solid var(--ps-line); z-index:20; overflow-y:auto;
+}
+patrik-navigation .ps-panel { min-height:100%; display:flex; flex-direction:column; padding:1rem .75rem; }
+patrik-navigation .ps-heading, patrik-navigation .ps-appearance, patrik-navigation .ps-bar { display:flex; align-items:center; gap:.5rem; }
+patrik-navigation .ps-heading { justify-content:space-between; padding-inline:.5rem; }
+patrik-navigation a { color:inherit; text-decoration:none; font:inherit; }
+patrik-navigation .ps-brand { display:inline-flex; align-items:center; min-height:44px; font-weight:650; letter-spacing:-.025em; }
+patrik-navigation .ps-links { display:grid; gap:2px; margin:1rem 0; padding:0; }
+patrik-navigation .ps-link { display:flex; align-items:center; min-block-size:44px; padding:.5rem .625rem; overflow-wrap:anywhere; color:var(--ps-muted); }
+patrik-navigation .ps-link:hover, patrik-navigation .ps-link:focus-visible {background:color-mix(in srgb,var(--ps-ink) 6%,transparent);color:var(--ps-ink);}
+patrik-navigation .ps-link[aria-current] {color:var(--ps-current);font-weight:600;box-shadow:inset 2px 0 currentColor;}
+patrik-navigation .ps-appearance {margin:auto 0 0; padding:.75rem .5rem 0; border-top:1px solid var(--ps-line); justify-content:space-between; color:var(--ps-muted); font-size:.875rem;}
+patrik-navigation .ps-appearance select {font:inherit;min-height:44px;width:auto;margin:0;padding:.25rem;border:0;background:var(--ps-pane);color:var(--ps-ink);}
+patrik-navigation button {display:grid;place-items:center;min-width:44px;min-height:44px;padding:0;margin:0;color:inherit;background:transparent;border:0;cursor:pointer;box-shadow:none;}
+patrik-navigation :focus-visible {outline:2px solid var(--ps-current);outline-offset:-2px;}
+patrik-navigation .ps-close {font:400 1.8rem/1 system-ui;}
+patrik-navigation .ps-bar {display:none;}
+patrik-navigation .ps-drawer {position:fixed;inset:0 auto 0 0;margin:0;width:min(80vw,20rem);max-width:none;height:100dvh;max-height:none;padding:0;border:0;border-inline-end:1px solid var(--ps-line);overflow-y:auto;}
+patrik-navigation .ps-drawer:not([open]) { display:none; }
+patrik-navigation .ps-drawer::backdrop {background:rgb(0 0 0 / .36);}
+patrik-navigation .ps-menu-icon {width:19px;height:13px;border-block:1.5px solid currentColor;display:grid;align-items:center;}
+patrik-navigation .ps-menu-icon::before {content:'';border-top:1.5px solid currentColor;}
+@media(max-width:56rem) {
+  html[data-patrik-navigation] body {margin-inline-start:0;}
+  html[data-patrik-navigation] body::before {content:'';display:block;height:48px;}
+  patrik-navigation .ps-rail {display:none;}
+  patrik-navigation .ps-bar {display:flex;position:fixed;inset:0 0 auto;min-height:48px;padding-inline:max(.5rem,env(safe-area-inset-left));border-bottom:1px solid var(--ps-line);z-index:20;}
+  html:has(.ps-drawer[open]) {overflow:hidden;}
+}
