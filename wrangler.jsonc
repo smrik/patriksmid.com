@@ -7,7 +7,8 @@
   "preview_urls": false,
   "routes": [
     { "pattern": "patriksmid.com/*", "zone_name": "patriksmid.com" },
-    { "pattern": "www.patriksmid.com/*", "zone_name": "patriksmid.com" }
+    { "pattern": "www.patriksmid.com/*", "zone_name": "patriksmid.com" },
+    { "pattern": "keydojo.patriksmid.com/*", "zone_name": "patriksmid.com" }
   ],
   "assets": {
     "directory": "./dist",

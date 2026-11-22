@@ -64,9 +64,16 @@ test('route configuration preserves the origin and runs redirects before assets'
   assert.deepEqual(config.routes, [
     { pattern: 'patriksmid.com/*', zone_name: 'patriksmid.com' },
     { pattern: 'www.patriksmid.com/*', zone_name: 'patriksmid.com' },
+    { pattern: 'keydojo.patriksmid.com/*', zone_name: 'patriksmid.com' },
   ]);
   assert.equal(config.workers_dev, false);
   assert.equal(config.preview_urls, false);
   assert.equal(config.assets.binding, 'ASSETS');
   assert.equal(config.assets.run_worker_first, true);
+});
+
+test('old Keydojo links open the Vim Forge homepage', async () => {
+  const response = await worker.fetch(new Request('https://keydojo.patriksmid.com/practice?lesson=1'), {});
+  assert.equal(response.status, 303);
+  assert.equal(response.headers.get('location'), 'https://vim.patriksmid.com/');
 });
