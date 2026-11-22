@@ -130,6 +130,10 @@ p {
 	padding-inline: 0.25rem;
 }
 
+.home-page .patrik-theme-control select:focus-visible {
+	outline-offset: -2px;
+}
+
 @media (max-width: 42rem) {
 	.home-page .patrik-sitebar-inner {
 		padding-block: 0.125rem;
