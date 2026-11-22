@@ -65,3 +65,38 @@ html[data-patrik-color][data-theme="dark"] {
     gap: 0 0.35rem;
   }
 }
+
+:root {
+  --patrik-radius: 0;
+  --patrik-space-1: 0.25rem;
+  --patrik-space-2: 0.5rem;
+  --patrik-space-3: 0.75rem;
+  --patrik-space-4: 1rem;
+}
+
+.patrik-sitebar-inner { padding-block: var(--patrik-space-1); }
+.patrik-card { padding: var(--patrik-space-3); }
+.patrik-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--patrik-space-2);
+}
+
+.patrik-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  row-gap: 0;
+}
+.patrik-list > li {
+  min-width: 0;
+  border-top: 1px solid var(--patrik-line);
+}
+.patrik-list > li > a:only-child {
+  box-sizing: border-box;
+  display: block;
+  min-height: 44px;
+  padding-block: var(--patrik-space-3);
+  overflow-wrap: anywhere;
+}

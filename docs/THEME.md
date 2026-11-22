@@ -1,27 +1,27 @@
 # Shared website theme
 
-The portfolio publishes the theme at [v1.css](https://patriksmid.com/theme/v1.css).
-Include it in a site's layout or HTML head.
+[Open the component reference](https://patriksmid.com/theme/). The portfolio hosts the stylesheet and theme switch. Use the same classes with HTML, React, Astro or a server template.
+
+| Element | Classes |
+| --- | --- |
+| Page container | `.patrik-shell` |
+| Site navigation | `.patrik-sitebar`, `.patrik-sitebar-inner`, `.patrik-sitebar-brand`, `.patrik-sitebar-links` |
+| Directory or results | `.patrik-list` on a list, with one link per row |
+| Responsive columns | `.patrik-grid` on a list or card container |
+| Group of controls | `.patrik-toolbar` around labeled inputs or buttons |
+| Form controls | `.patrik-field` on inputs/selects, `.patrik-button` on buttons or links |
+| Bordered panel | `.patrik-card` |
+
+Use the `--patrik-bg`, `--patrik-surface`, `--patrik-ink`, `--patrik-muted`, `--patrik-line` and `--patrik-accent` tokens for custom components. Spacing steps `--patrik-space-1` through `-4` are 4, 8, 12 and 16 CSS pixels at the default font size. Use `--patrik-radius` for square controls. Touch controls have a 44px minimum height.
 
 ```html
-<link rel="stylesheet" href="https://patriksmid.com/theme/v1.css">
+<ul class="patrik-list">
+  <li><a href="/reports/">Reports</a></li>
+  <li><a href="/sources/">Data sources</a></li>
+</ul>
 ```
 
-| Use | Styles |
-| --- | --- |
-| Common colors and type | `--patrik-bg`, `--patrik-surface`, `--patrik-ink`, `--patrik-muted`, `--patrik-line`, `--patrik-accent`, `--patrik-font`, `--patrik-heading` |
-| Page width and side margins | `.patrik-shell` |
-| Header | `.patrik-sitebar` on the header, `.patrik-sitebar-inner` on its child, `.patrik-sitebar-brand` on the home link, and `.patrik-sitebar-links` on the navigation |
-| Cards that wrap at narrow widths | `.patrik-grid` around elements with `.patrik-card` |
-| Common controls | `.patrik-button` on buttons or links and `.patrik-field` on inputs and selects with accessible labels |
-
-Use semantic HTML and a responsive viewport. Check the page at 320px, 390px
-and a desktop width. Keyboard-test links and controls. Keep wide tables and
-charts inside their own scroll area when they need more space.
-
-Publish additive fixes via the portfolio's existing GitHub workflow. Keep
-class names and tokens compatible on v1. For breaking changes, publish a new
-version and update each consuming site through its own release workflow.
+For privileged pages, vendor the reviewed CSS and its relative import on the same host. Keep existing CSP and authentication boundaries. Test both palettes, keyboard focus, and wrapping at 320px, 412px and desktop width. Use a new versioned URL for incompatible changes.
 
 ## System, Light, and Dark
 

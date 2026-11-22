@@ -66,7 +66,7 @@ const formatDate = (date: Date) =>
 
   <section class="section" id="websites" aria-labelledby="websites-title">
     <h2 id="websites-title">Websites</h2>
-    <ul class="websites patrik-grid">
+    <ul class="websites patrik-list patrik-grid">
       {websites.map(({ title, href, description }) => (
         <li>
           <a href={href}>
@@ -122,19 +122,7 @@ const formatDate = (date: Date) =>
     padding-top: 0;
   }
 
-  .websites {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    row-gap: 0;
-  }
-
   .websites a {
-    display: block;
-    height: 100%;
-    padding-block: 0.8rem;
-    border-top: 1px solid var(--rule);
-    overflow-wrap: anywhere;
     text-decoration: none;
   }
 
