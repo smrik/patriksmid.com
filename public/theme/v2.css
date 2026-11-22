@@ -46,6 +46,13 @@ html[data-patrik-color][data-theme="dark"] {
 }
 
 .patrik-theme-control select {
+  box-sizing: border-box;
+  min-block-size: 44px;
+  padding-inline: 0.75rem;
+  border: 1px solid var(--patrik-muted);
+  border-radius: var(--patrik-radius);
+  color: var(--patrik-ink);
+  background: var(--patrik-surface);
   font-size: 1rem;
 }
 
