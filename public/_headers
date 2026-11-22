@@ -1,2 +1,6 @@
 /deployment.json
   Cache-Control: no-store
+
+/theme/v1.css
+  Cache-Control: public, max-age=3600
+  Access-Control-Allow-Origin: *
