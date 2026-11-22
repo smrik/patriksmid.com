@@ -61,8 +61,34 @@
     }
     return box;
   }
+  // Outline symbols for the common destinations. App-specific links use a document icon.
+  const icons = {
+    websites: 'M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z',
+    projects: 'M3 6h7l2 3h9v11H3z',
+    writing: 'M4 16 16 4l4 4L8 20l-5 1z M13 7l4 4',
+    blog: 'M4 5h7l1 2 1-2h7v14h-7l-1 1-1-1H4z M12 7v13',
+    personal: 'M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0 M4 21v-2a8 8 0 0 1 16 0v2',
+    about: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0 M12 11v6 M12 7v.1',
+    page: 'M5 3h9l5 5v13H5z M14 3v6h5 M8 14h8 M8 17h6'
+  };
+  function linkIcon(label) {
+    const ns = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(ns,'svg');
+    svg.setAttribute('viewBox','0 0 24 24');
+    svg.setAttribute('aria-hidden','true');
+    svg.setAttribute('fill','none');
+    svg.setAttribute('stroke','currentColor');
+    svg.setAttribute('stroke-width','1.5');
+    svg.setAttribute('stroke-linejoin','round');
+    svg.setAttribute('stroke-linecap','round');
+    const path = document.createElementNS(ns,'path');
+    path.setAttribute('d',Object.hasOwn(icons,label) ? icons[label] : icons.page);
+    svg.append(path);
+    return svg;
+  }
   function linkFrom(original, cls) {
     const a = element('a',cls,original.textContent.trim() || original.getAttribute('aria-label'));
+    if (cls === 'ps-link') a.prepend(linkIcon(a.textContent.trim().toLowerCase()));
     a.href = original.href;
     if (original.target) a.target = original.target;
     if (original.rel) a.rel = original.rel;
