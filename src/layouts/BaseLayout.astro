@@ -4,10 +4,12 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  pageClass?: string;
 }
 
 const {
   title,
+  pageClass,
   description = 'Patrik Šmid — finance, AI, systems, and writing.',
 } = Astro.props;
 ---
@@ -29,7 +31,7 @@ const {
     <title>{title}</title>
   </head>
 
-  <body>
+  <body class={pageClass}>
     <header class="patrik-sitebar">
       <div class="patrik-sitebar-inner">
         <a class="patrik-sitebar-brand" href="/">Patrik Šmid</a>

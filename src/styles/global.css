@@ -122,3 +122,30 @@ p {
 		margin-inline-start: 0;
 	}
 }
+
+.home-page .patrik-theme-control select {
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	padding-inline: 0.25rem;
+}
+
+.home-page .patrik-theme-control select:focus-visible {
+	outline-offset: -2px;
+}
+
+@media (max-width: 42rem) {
+	.home-page .patrik-sitebar-inner {
+		padding-block: 0.125rem;
+	}
+
+	.home-page .patrik-sitebar-links {
+		justify-content: space-between;
+		gap: 0 0.2rem;
+		font-size: 0.8125rem;
+	}
+
+	.home-page .patrik-sitebar-links a {
+		padding-inline: 0.125rem;
+	}
+}
