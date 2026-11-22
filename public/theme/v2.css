@@ -1,0 +1,60 @@
+@import url("./v1.css");
+
+html[data-patrik-color] {
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-patrik-color]:not([data-theme]) {
+    color-scheme: dark;
+    --patrik-bg: #171917;
+    --patrik-surface: #212620;
+    --patrik-ink: #f3f0e8;
+    --patrik-muted: #b7b9ae;
+    --patrik-line: #51574f;
+    --patrik-accent: #a5d1b4;
+  }
+}
+
+html[data-patrik-color][data-theme="dark"] {
+  color-scheme: dark;
+  --patrik-bg: #171917;
+  --patrik-surface: #212620;
+  --patrik-ink: #f3f0e8;
+  --patrik-muted: #b7b9ae;
+  --patrik-line: #51574f;
+  --patrik-accent: #a5d1b4;
+}
+
+.patrik-shell,
+.patrik-sitebar-inner {
+  --patrik-safe-gutter: max(var(--patrik-gutter), env(safe-area-inset-left), env(safe-area-inset-right));
+  width: min(calc(100% - 2 * var(--patrik-safe-gutter)), var(--patrik-width));
+}
+
+.patrik-sitebar-links a {
+  padding-inline: 0.25rem;
+}
+
+.patrik-theme-control {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font: 500 0.875rem / 1.25 var(--patrik-font);
+  color: var(--patrik-muted);
+}
+
+.patrik-theme-control select {
+  font-size: 1rem;
+}
+
+@media (max-width: 42rem) {
+  .patrik-sitebar-inner {
+    column-gap: 0.5rem;
+  }
+
+  .patrik-sitebar-links {
+    gap: 0 0.35rem;
+  }
+}
