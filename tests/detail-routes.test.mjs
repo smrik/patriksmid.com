@@ -46,7 +46,9 @@ test('the homepage links to the public sites and the Quartz blog', () => {
   assert.match(home, /href="https:\/\/data\.patriksmid\.com\/"[^>]*>\s*<h3[^>]*>Macro Data/);
   assert.match(home, /href="https:\/\/vim\.patriksmid\.com\/"/);
   for (const page of [home, writing]) {
-    assert.match(page, /href="https:\/\/smrik\.github\.io\/"[^>]*>Explore the blog/);
+    assert.match(page, /href="https:\/\/blog\.patriksmid\.com\/"[^>]*>Blog/);
+    assert.match(page, /href="https:\/\/blog\.patriksmid\.com\/"[^>]*>Explore the blog/);
+    assert.doesNotMatch(page, /href="https:\/\/smrik\.github\.io\//);
     assert.match(page, /id="quartz-posts" hidden/);
   }
 });
