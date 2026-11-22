@@ -1,12 +1,11 @@
 :root {
-	--paper: #f4f0e8;
-	--ink: #171717;
-	--muted: #6f6b64;
-	--rule: #c9c2b7;
-	--accent: #315c4b;
-	--max-width: 1180px;
+	--paper: var(--patrik-bg);
+	--ink: var(--patrik-ink);
+	--muted: var(--patrik-muted);
+	--rule: var(--patrik-line);
+	--accent: var(--patrik-accent);
 
-	font-family: Georgia, 'Times New Roman', serif;
+	font-family: var(--patrik-heading);
 	color: var(--ink);
 	background: var(--paper);
 	font-synthesis: none;
@@ -40,38 +39,6 @@ a:hover {
 a:focus-visible {
 	outline: 2px solid var(--accent);
 	outline-offset: 4px;
-}
-
-.site-header,
-.site-footer,
-main {
-	width: min(calc(100% - 3rem), var(--max-width));
-	margin-inline: auto;
-}
-
-.site-header {
-	display: flex;
-	align-items: baseline;
-	justify-content: space-between;
-	gap: 2rem;
-	padding: 2rem 0 1.25rem;
-	border-bottom: 1px solid var(--ink);
-}
-
-.site-name {
-	font-size: clamp(1.6rem, 3vw, 2.3rem);
-	font-weight: 700;
-	letter-spacing: -0.03em;
-}
-
-.site-header nav {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1.5rem;
-	font-family: 'Courier New', monospace;
-	font-size: 0.8rem;
-	text-transform: uppercase;
-	letter-spacing: 0.08em;
 }
 
 main {
@@ -132,12 +99,15 @@ p {
 }
 
 @media (max-width: 700px) {
-	.site-header {
-		align-items: flex-start;
-		flex-direction: column;
-	}
-
 	.site-footer {
 		flex-direction: column;
+	}
+}
+
+@media (max-width: 480px) {
+	h1 {
+		font-size: clamp(2.25rem, 10vw, 3rem);
+		line-height: 1;
+		overflow-wrap: anywhere;
 	}
 }

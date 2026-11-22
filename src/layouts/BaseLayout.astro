@@ -23,28 +23,31 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
 
+    <link rel="stylesheet" href="/theme/v1.css" />
     <title>{title}</title>
   </head>
 
   <body>
-    <header class="site-header">
-      <a class="site-name" href="/">Patrik Šmid</a>
+    <header class="patrik-sitebar">
+      <div class="patrik-sitebar-inner">
+        <a class="patrik-sitebar-brand" href="/">Patrik Šmid</a>
 
-      <nav aria-label="Primary navigation">
-        <a href="/#websites">Websites</a>
-        <a href="/projects">Projects</a>
-        <a href="/writing">Writing</a>
-        <a href="https://blog.patriksmid.com/">Blog</a>
-        <a href="/flatbot">Flatbot</a>
-        <a href="/about">About</a>
-      </nav>
+        <nav class="patrik-sitebar-links" aria-label="Primary navigation">
+          <a href="/#websites">Websites</a>
+          <a href="/projects">Projects</a>
+          <a href="/writing">Writing</a>
+          <a href="https://blog.patriksmid.com/">Blog</a>
+          <a href="/flatbot">Flatbot</a>
+          <a href="/about">About</a>
+        </nav>
+      </div>
     </header>
 
-    <main>
+    <main class="patrik-shell">
       <slot />
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer patrik-shell">
       <span>Patrik Šmid</span>
 
       <div class="footer-links">
