@@ -13,17 +13,19 @@ const {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-patrik-color>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f0e8" data-patrik-theme-color />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
 
-    <link rel="stylesheet" href="/theme/v1.css" />
+    <script is:inline src="/theme/v2.js"></script>
+    <link rel="stylesheet" href="/theme/v2.css" />
     <title>{title}</title>
   </head>
 
@@ -31,6 +33,15 @@ const {
     <header class="patrik-sitebar">
       <div class="patrik-sitebar-inner">
         <a class="patrik-sitebar-brand" href="/">Patrik Šmid</a>
+
+        <label class="patrik-theme-control">
+          <span>Theme</span>
+          <select class="patrik-field" data-patrik-theme>
+            <option value="auto">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
 
         <nav class="patrik-sitebar-links" aria-label="Primary navigation">
           <a href="/#websites">Websites</a>

@@ -111,3 +111,14 @@ p {
 		overflow-wrap: anywhere;
 	}
 }
+
+.patrik-sitebar-links {
+	margin-inline-start: auto;
+}
+
+@media (max-width: 42rem) {
+	.patrik-sitebar-links {
+		flex-basis: 100%;
+		margin-inline-start: 0;
+	}
+}
