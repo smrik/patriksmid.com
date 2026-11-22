@@ -28,11 +28,13 @@ const {
 
     <script is:inline src="/theme/v2.js"></script>
     <link rel="stylesheet" href="/theme/v2.css" />
+    <link rel="stylesheet" href="/theme/shell.css" />
+    <script is:inline defer src="/theme/shell.js"></script>
     <title>{title}</title>
   </head>
 
   <body class={pageClass}>
-    <header class="patrik-sitebar">
+    <header class="patrik-sitebar" data-patrik-shell>
       <div class="patrik-sitebar-inner">
         <a class="patrik-sitebar-brand" href="/">Patrik Šmid</a>
 

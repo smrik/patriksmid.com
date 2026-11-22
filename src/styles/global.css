@@ -5,7 +5,7 @@
 	--rule: var(--patrik-line);
 	--accent: var(--patrik-accent);
 
-	font-family: var(--patrik-heading);
+	font-family: var(--patrik-font);
 	color: var(--ink);
 	background: var(--paper);
 	font-synthesis: none;
@@ -80,21 +80,21 @@ p {
 }
 
 h1 {
-	font-size: clamp(3rem, 8vw, 7rem);
+	font-size: clamp(2rem, 4vw, 3rem);
 	line-height: 0.92;
 	letter-spacing: -0.055em;
 	font-weight: 500;
 }
 
 h2 {
-	font-size: clamp(1.8rem, 4vw, 3rem);
+	font-size: clamp(1.3rem, 2.5vw, 1.75rem);
 	line-height: 1;
 	letter-spacing: -0.035em;
 	font-weight: 500;
 }
 
 p {
-	font-size: 1.05rem;
+	font-size: 1rem;
 	line-height: 1.65;
 }
 
@@ -106,46 +106,12 @@ p {
 
 @media (max-width: 480px) {
 	h1 {
-		font-size: clamp(2.25rem, 10vw, 3rem);
+		font-size: 2rem;
 		line-height: 1;
 		overflow-wrap: anywhere;
 	}
 }
 
-.patrik-sitebar-links {
-	margin-inline-start: auto;
-}
-
-@media (max-width: 42rem) {
-	.patrik-sitebar-links {
-		flex-basis: 100%;
-		margin-inline-start: 0;
-	}
-}
-
-.home-page .patrik-theme-control select {
-	border: 0;
-	border-radius: 0;
-	background: transparent;
-	padding-inline: 0.25rem;
-}
-
-.home-page .patrik-theme-control select:focus-visible {
-	outline-offset: -2px;
-}
-
-@media (max-width: 42rem) {
-	.home-page .patrik-sitebar-inner {
-		padding-block: 0.125rem;
-	}
-
-	.home-page .patrik-sitebar-links {
-		justify-content: space-between;
-		gap: 0 0.2rem;
-		font-size: 0.8125rem;
-	}
-
-	.home-page .patrik-sitebar-links a {
-		padding-inline: 0.125rem;
-	}
+main.patrik-shell, .site-footer.patrik-shell {
+  --patrik-width: 56rem;
 }

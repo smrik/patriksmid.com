@@ -54,3 +54,9 @@ in the head before the theme stylesheet to apply saved choices on first render.
 Read `data-theme` on the HTML element for a resolved theme in scripts or
 canvas charts. Prefer CSS tokens for text and surfaces. Check keyboard focus
 and contrast in both modes and confirm the controls fit at 320px.
+
+## Sidebar and phone drawer
+
+Load `/theme/shell.css` after v2.css and defer `/theme/shell.js`. Both are served by patriksmid.com. Add `data-patrik-shell` to the existing site bar. Include a home link with class `patrik-sitebar-brand`, a `nav` of ordinary links, and optionally the existing appearance selector. Use a single shell per page. Keep forms, app commands and privileged controls outside the source header. Label current routes with `aria-current` when the URL alone is ambiguous.
+
+The desktop sidebar becomes a menu button and modal drawer at 56rem. It uses the links supplied by each site, so personal services can stay in the authenticated Hub. Without the script, the original header still works. Private apps can serve a reviewed same-origin copy.

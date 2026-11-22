@@ -12,3 +12,11 @@
 /theme/v2.js
   Cache-Control: public, max-age=3600
   Access-Control-Allow-Origin: *
+
+/theme/shell.css
+  Cache-Control: public, max-age=300
+  Access-Control-Allow-Origin: *
+
+/theme/shell.js
+  Cache-Control: public, max-age=300
+  Access-Control-Allow-Origin: *
