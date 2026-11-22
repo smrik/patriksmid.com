@@ -1,11 +1,11 @@
 <section class="quartz-posts" aria-labelledby="quartz-posts-title">
   <h2 id="quartz-posts-title">Latest from the blog</h2>
-  <p><a class="blog-link" href="https://smrik.github.io/">Explore the blog ↗</a></p>
+  <p><a class="blog-link" href="https://blog.patriksmid.com/">Explore the blog ↗</a></p>
   <ul id="quartz-posts" hidden></ul>
 </section>
 
 <script>
-  const blog = 'https://smrik.github.io';
+  const blog = 'https://blog.patriksmid.com';
   const list = document.getElementById('quartz-posts');
 
   async function loadPosts() {
@@ -20,7 +20,9 @@
       const href = item.querySelector('link')?.textContent?.trim();
       if (!title || !href || !URL.canParse(href)) continue;
       const url = new URL(href);
-      if (url.origin !== blog || url.username || url.password || url.pathname === '/') continue;
+      if (url.username || url.password || url.pathname === '/') continue;
+      if (url.origin === 'https://smrik.github.io') url.hostname = 'blog.patriksmid.com';
+      if (url.origin !== blog) continue;
       if (/\/README(?:\.html)?\/?$/i.test(url.pathname) || links.has(url.href)) continue;
 
       links.add(url.href);

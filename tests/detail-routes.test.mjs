@@ -43,10 +43,12 @@ test('the homepage links to the public sites and the Quartz blog', () => {
   assert.match(home, /href="https:\/\/code\.patriksmid\.com\/"/);
   assert.match(home, /ChatGPT sign-in required\./);
   assert.match(home, /href="https:\/\/songs\.patriksmid\.com\/"/);
-  assert.match(home, /href="https:\/\/slovenia-purchasing-power\.smrik\.chatgpt\.site\/"/);
+  assert.match(home, /href="https:\/\/slovenia\.patriksmid\.com\/"/);
   assert.match(home, /href="https:\/\/vim\.patriksmid\.com\/"/);
   for (const page of [home, writing]) {
-    assert.match(page, /href="https:\/\/smrik\.github\.io\/"[^>]*>Explore the blog/);
+    assert.match(page, /href="https:\/\/blog\.patriksmid\.com\/"[^>]*>Blog/);
+    assert.match(page, /href="https:\/\/blog\.patriksmid\.com\/"[^>]*>Explore the blog/);
+    assert.doesNotMatch(page, /href="https:\/\/smrik\.github\.io\//);
     assert.match(page, /id="quartz-posts" hidden/);
   }
 });
