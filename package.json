@@ -9,7 +9,7 @@
   "dev": "astro dev",
   "build": "astro build",
   "test": "node --test tests/detail-routes.test.mjs",
-  "deploy": "npm test && rsync -a --delete dist/ /srv/patriksmid.com/",
+  "deploy": "npm test && rsync -a --delete --exclude='flatbot/status.json' dist/ /srv/patriksmid.com/",
   "preview": "astro preview",
   "astro": "astro"
 },

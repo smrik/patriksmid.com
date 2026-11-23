@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Flatbot — Patrik Šmid"
+  description="A small public status page for the flatbot rental search."
+>
+  <section class="page-intro">
+    <p class="eyebrow">Flatbot · live status</p>
+    <h1>Apartment search, without the noise.</h1>
+    <p class="intro">
+      Aggregate counts from the Ljubljana rental search. No phone numbers,
+      exact addresses, or raw listing text are published here.
+    </p>
+  </section>
+
+  <section class="status" id="flatbot-status" aria-live="polite">
+    <p>Loading latest status…</p>
+  </section>
+</BaseLayout>
+
+<script>
+  const target = document.querySelector('#flatbot-status');
+
+  const formatTime = (value) => {
+    if (!value) return '—';
+    return new Intl.DateTimeFormat('en-GB', {
+      dateStyle: 'medium',
+      timeStyle: 'short',
+    }).format(new Date(value));
+  };
+
+  const render = (payload) => {
+    const counts = payload.counts || {};
+    const sources = Object.entries(payload.cycle?.sources || {});
+    target.innerHTML = `
+      <div class="count-grid">
+        <div><strong>${counts.total ?? 0}</strong><span>stored</span></div>
+        <div><strong>${counts.shortlist ?? 0}</strong><span>shortlist</span></div>
+        <div><strong>${counts.maybe ?? 0}</strong><span>maybe</span></div>
+        <div><strong>${payload.cycle?.new_count ?? 0}</strong><span>new this poll</span></div>
+      </div>
+      <p class="updated">Updated ${formatTime(payload.updated_at)}</p>
+      <div class="sources">
+        ${sources.map(([name, source]) => `
+          <div class="source">
+            <span>${name}</span>
+            <span>${source.new ?? 0} new · ${source.status ?? 'unknown'}</span>
+          </div>
+        `).join('') || '<p>No source run recorded yet.</p>'}
+      </div>
+    `;
+  };
+
+  fetch('/flatbot/status.json', { cache: 'no-store' })
+    .then((response) => {
+      if (!response.ok) throw new Error('status unavailable');
+      return response.json();
+    })
+    .then(render)
+    .catch(() => {
+      target.innerHTML = '<p>Status is not available yet. The first poll may still be pending.</p>';
+    });
+</script>
+
+<style>
+  .page-intro {
+    padding: clamp(5rem, 10vw, 8rem) 0;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .page-intro h1 {
+    max-width: 900px;
+    margin-bottom: 2rem;
+  }
+
+  .intro {
+    max-width: 700px;
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    line-height: 1.5;
+  }
+
+  .status {
+    padding: 3rem 0;
+    max-width: 850px;
+  }
+
+  .count-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--ink);
+    border: 1px solid var(--ink);
+  }
+
+  .count-grid div {
+    display: grid;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background: var(--paper);
+  }
+
+  .count-grid strong {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .count-grid span,
+  .updated,
+  .source {
+    color: var(--muted);
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .updated {
+    margin: 1.5rem 0 3rem;
+  }
+
+  .source {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  @media (max-width: 700px) {
+    .count-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .source {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>
